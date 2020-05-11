@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+while true;
+do
+	if ping -q -c 1 1.1.1.1 &> /dev/null
+	then
+		STATUS="up"
+	else
+		STATUS="down"
+	fi
+
+	d=$(date +'%a %b %d %r')
+	b=$(cat /sys/class/power_supply/BAT0/capacity)
+	s=$STATUS
+	xsetroot -name "$d | Battery: $b | Wifi: $s"
+	sleep 1
+done;
